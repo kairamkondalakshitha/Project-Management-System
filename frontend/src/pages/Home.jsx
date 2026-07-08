@@ -1,36 +1,42 @@
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-function Home(){
+function Home() {
 
-return (
+  const navigate = useNavigate();
 
-<div className="min-h-screen bg-gray-50">
+  return (
 
-<Navbar />
+    <div className="min-h-screen bg-gray-50">
 
-<div className="flex items-center justify-center min-h-[80vh]">
+      <Navbar />
 
-<div className="text-center">
+      <div className="flex items-center justify-center min-h-[80vh]">
 
-<h1 className="text-5xl font-bold text-gray-800">
-Project Management System
-</h1>
+        <div className="text-center">
 
-<p className="mt-5 text-gray-600 text-lg">
-Manage projects, tasks and teams efficiently
-</p>
+          <h1 className="text-5xl font-bold text-gray-800">
+            Project Management System
+          </h1>
 
-<button className="mt-8 bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700">
-Get Started
-</button>
+          <p className="mt-5 text-gray-600 text-lg">
+            Manage projects, tasks and teams efficiently
+          </p>
 
-</div>
+          <button
+            onClick={() => navigate("/login")}
+            className="mt-8 bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700"
+          >
+            Get Started
+          </button>
 
-</div>
+        </div>
 
-</div>
+      </div>
 
-)
+    </div>
+
+  );
 
 }
 
