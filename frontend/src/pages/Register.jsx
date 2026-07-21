@@ -8,9 +8,7 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // Must match the role enum in your backend User model
-  const [role, setRole] = useState("Team Member");
+  const [role, setRole] = useState("Member");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -52,6 +50,7 @@ function Register() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
 
+        {/* Heading */}
         <h2 className="text-3xl font-bold text-center text-blue-600">
           Create Account
         </h2>
@@ -60,12 +59,14 @@ function Register() {
           Register to manage your projects
         </p>
 
+        {/* Error Message */}
         {error && (
           <p className="mt-4 text-center text-red-600">
             {error}
           </p>
         )}
 
+        {/* Registration Form */}
         <form onSubmit={handleRegister} className="mt-6 space-y-4">
 
           {/* Full Name */}
@@ -126,9 +127,10 @@ function Register() {
               value={role}
               onChange={(e) => setRole(e.target.value)}
               className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
             >
-              <option value="Team Member">Team Member</option>
-              <option value="Project Manager">Project Manager</option>
+              <option value="Member">Member</option>
+              <option value="Manager">Manager</option>
               <option value="Admin">Admin</option>
             </select>
           </div>
@@ -144,6 +146,7 @@ function Register() {
 
         </form>
 
+        {/* Login Link */}
         <p className="text-center mt-5 text-gray-600">
           Already have an account?
 
