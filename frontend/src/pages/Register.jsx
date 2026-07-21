@@ -8,7 +8,9 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("User");
+
+  // Must match the role enum in your backend User model
+  const [role, setRole] = useState("Team Member");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -33,15 +35,17 @@ function Register() {
 
       navigate("/login");
     } catch (err) {
-  console.log("Full Error:", err);
-  console.log("Response:", err.response);
-  console.log("Data:", err.response?.data);
+      console.log("Full Error:", err);
+      console.log("Response:", err.response);
+      console.log("Data:", err.response?.data);
 
-  setError(
-    err.response?.data?.message ||
-    "Registration failed. Please try again."
-  );
-}
+      setError(
+        err.response?.data?.message ||
+          "Registration failed. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -64,6 +68,7 @@ function Register() {
 
         <form onSubmit={handleRegister} className="mt-6 space-y-4">
 
+          {/* Full Name */}
           <div>
             <label className="block text-gray-700 mb-1">
               Full Name
@@ -79,6 +84,7 @@ function Register() {
             />
           </div>
 
+          {/* Email */}
           <div>
             <label className="block text-gray-700 mb-1">
               Email
@@ -94,6 +100,7 @@ function Register() {
             />
           </div>
 
+          {/* Password */}
           <div>
             <label className="block text-gray-700 mb-1">
               Password
@@ -109,6 +116,7 @@ function Register() {
             />
           </div>
 
+          {/* Role */}
           <div>
             <label className="block text-gray-700 mb-1">
               Role
@@ -119,11 +127,13 @@ function Register() {
               onChange={(e) => setRole(e.target.value)}
               className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="User">User</option>
+              <option value="Team Member">Team Member</option>
+              <option value="Project Manager">Project Manager</option>
               <option value="Admin">Admin</option>
             </select>
           </div>
 
+          {/* Register Button */}
           <button
             type="submit"
             disabled={loading}
